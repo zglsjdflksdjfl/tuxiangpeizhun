@@ -1,0 +1,12 @@
+%clear  
+P1=imread('image A.jpg'); %读取图像“image A.jpg”
+P2=imread('image B.jpg'); %读取图像“image B.jpg”
+figure(1); 
+subplot(1,2,1),imshow(P1); 
+subplot(1,2,2),imshow(P2); %显示图像image A.jpg、image B.jpg
+%cpselect(P1,P2);% 在标点时，用cpselect函数
+tform=cp2tform(inputPoints,basePoints,'affine'); %利用cp2tform函数生成仿射矩阵tform
+Po=imtransform(P1,tform); %进行空间变换生成配准后的图像Pout
+figure (2);
+subplot(1,2,1),imshow(Po); 
+subplot(1,2,2),imshow(P2); %显示image A.jpg图像根据image B.jpg图像配准后的图像Pout和image B.jpg
